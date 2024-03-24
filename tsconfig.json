@@ -30,6 +30,8 @@
     "**/*.tsx",
     "utils/icons.js",
     "utils/gallery.js", 
+    "utils/CourseContent.js", 
+
     "src/pages/api/fetch.js" ],
   "exclude": [
     "node_modules"
