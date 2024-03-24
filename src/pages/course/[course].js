@@ -8,6 +8,8 @@ import ScopeofCourse from "@/container/course/ScopeofCourse";
 import JobRole from "@/container/JobRole";
 import AnjaliStats from "@/container/AnjaliStats";
 import Testimonial from "@/container/Testimonial";
+
+
 import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
