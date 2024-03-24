@@ -6,6 +6,9 @@ import IdealFor from "@/container/course/IdealFor";
 import CourseForm from "@/container/course/CourseForm";
 import ScopeofCourse from "@/container/course/ScopeofCourse";
 import JobRole from "@/container/JobRole";
+
+
+
 import AnjaliStats from "@/container/AnjaliStats";
 import Testimonial from "@/container/Testimonial";
 
