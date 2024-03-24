@@ -94,7 +94,7 @@ export default function Home() {
       <MainLayout>
         <div className="lg:max-w-[1200px] m-auto px-10 mt-10">
           <h1 className="text-center md:text-[40px] text-[25px] leading-relaxed  font-bold lg:mb-[10px] lg:mt-[40px] antialiased  mb-4">
-            Anjali Computer Education can help you have a successful career.{" "}
+            Anjali Computer Education can help you have a successful career
           </h1>
           <p className="text-center md:text-[35px] text-[25px] leading-relaxed  font-bold lg:mb-[100px] lg:mt-[40px] antialiased ">
             Our Advanced Courses Can Help You Advance{" "}
