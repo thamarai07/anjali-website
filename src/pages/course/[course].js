@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { CourseContent } from "@/utils/CourseContent";
+import { CourseContent } from "../../../utils/CourseContent";
 import MainLayout from "@/components/Layuout/MainLayout";
 import CourseHero from "@/container/course/hero";
 import IdealFor from "@/container/course/IdealFor";
