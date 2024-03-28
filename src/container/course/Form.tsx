@@ -3,10 +3,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
-
 import axios from "axios";
 
-const Form = ({ CourseContent }: any) => {
+const Form = ({ CourseContent } : any) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -30,17 +29,16 @@ const Form = ({ CourseContent }: any) => {
       center_name: Yup.string().required("Location is required"),
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
-      axios
-        .post("http://anjalicomputereducation.com/portal/api/index.php", values)
-        .then(function (response) {
-
-          if (response.status == 201) {
+      axios.post('https://anjalicomputereducation.com/api/?key=91d671f835b9d92970ba5460e8be0dc2d6c49356&req_data=enq', values)
+        .then((response) => {
+          if (response.status === 201) {
             setSubmitting(false);
             resetForm();
+            console.log(JSON.stringify(response.data));
           }
         })
-        .catch(function (error) {
-       
+        .catch((error) => {
+          console.log(error);
         });
     },
   });
