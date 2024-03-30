@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { css } from "@emotion/react";
@@ -6,6 +6,9 @@ import { ClipLoader } from "react-spinners";
 import axios from "axios";
 
 const Form = ({ CourseContent } : any) => {
+  const [showForm, setShowForm] = useState(true);
+  const [responseMessage, setResponseMessage] = useState("");
+  const [Name,setName] = useState<string>();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -23,19 +26,22 @@ const Form = ({ CourseContent } : any) => {
       mobile: Yup.string()
         .matches(/^[0-9]+$/, "Invalid phone number") // Only allow digits
         .min(10, "Must be at least 10 characters")
-        .max(15, "Must not exceed 15 characters")
         .required("Mobile is required"),
       qualification: Yup.string().required("Qualification is required"),
       center_name: Yup.string().required("Location is required"),
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
+      setName(values.name)
       axios.post('https://anjalicomputereducation.com/api/?key=91d671f835b9d92970ba5460e8be0dc2d6c49356&req_data=enq', values)
-        .then((response) => {
-          if (response.status === 201) {
-            setSubmitting(false);
-            resetForm();
-            console.log(JSON.stringify(response.data));
+        .then((response : any) => {
+          if (response.status === 200) {
+            setShowForm(false);
+            setResponseMessage(response.data);
+          } else if (response.status === 201) {
+            setResponseMessage("Error: " + response.data.msg);
           }
+          setSubmitting(false);
+          resetForm();
         })
         .catch((error) => {
           console.log(error);
@@ -65,10 +71,13 @@ const Form = ({ CourseContent } : any) => {
       ccode: "anjali04",
     },
   ];
+  console.log(responseMessage)
 
   return (
     <div className="border border-green-500 p-5 w-[100%] m-auto rounded shadow-md shadow-green-500">
-      <p className="text-3xl mb-8 font-semibold">Enquiry Now </p>
+       {showForm ? (
+        <>
+         <p className="text-3xl mb-8 font-semibold">Enquiry Now </p>
       <form onSubmit={formik.handleSubmit}>
         <div className="w-[100%] mb-4">
           <label className="text-[19px] font-semibold">Course</label>
@@ -190,9 +199,13 @@ const Form = ({ CourseContent } : any) => {
             ) : (
               "Submit"
             )}
-          </button>
+          </button> 
         </div>
       </form>
+        </>
+       ) : <div>Hello <span className="font-semibold text-green-500"> {Name} </span>, be ready! We will contact you very shortly.
+       </div> }
+     
     </div>
   );
 };

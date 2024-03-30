@@ -45,9 +45,9 @@ const Course = ({ course }) => {
         />
         <meta
           name="keywords"
-          content={course.courseTitle + "course , tob softskill course , self development course, best course during school day's, best course during collage, it courses in chennai, accounting courses in chennai, media related courses in chennai "  }
+          content={course.courseTitle.toLowerCase() + " course in chennai, " + course.courseTitle.toLowerCase() + " certificate course in chennai , best computer institute in chennai , computer institute in tambaram , computer institute in chengalapttu, computer institute in selaiyur, computer institute in west tambarsm, computer institute in guduvanchery, best computer institute near tambaram ,best computer institute near chengallpattu , best computer institute near selaiyur ,best computer institute near guduvanchery" }
         />
-            <link rel="canonical" href={`https://anjalicomputereducation.com`+Router.asPath} />
+            <link rel="canonical" href={`https://anjalicomputereducation.com/course/`+course.slug}/>
 
       </Head>
       <MainLayout>
