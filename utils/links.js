@@ -44,7 +44,7 @@ export const navLinks = [
     {
         id : 5,
         title : "Contact Us",
-        href : "/Contactus",
+        href : "/contactus",
         isMegaMenu :  true
     }
 ] 

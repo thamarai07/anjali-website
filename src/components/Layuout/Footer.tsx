@@ -13,7 +13,7 @@ function Footer() {
           <ul className=' text-white font-medium'>
             <li><Link href="/">Home</Link></li>
             <li className='mt-1 p-1 hover:bg-white hover:text-black rounded'><Link href="/aboutus/">About Us</Link></li>
-            <li className='mt-1 p-1 hover:bg-white hover:text-black rounded'><Link href="/Contactus/">Contact Us</Link></li>
+            <li className='mt-1 p-1 hover:bg-white hover:text-black rounded'><Link href="/contactus/">Contact Us</Link></li>
             <li className='mt-1 p-1 hover:bg-white hover:text-black rounded'><Link href="/gallery/">Gallery</Link></li>
           </ul>
         </div>

@@ -27,6 +27,7 @@ export default function Courses() {
       </Head>
 
       <MainLayout>
+        <h1 className="text-center lg:text-2xl text-lg lg:mb-14 mb-6 lg:font-bold font-semibold">Anjali Computer Education - Contact us</h1>
         <AddsAccordion />
         {/* <Image src={"/contactus/cuteanimated_353.jpg"} className='opacity-5' width={1200} height={800} alt='contactus' /> */}
         <div className="lg:max-w-7xl m-auto lg:mt-16 mt-10">

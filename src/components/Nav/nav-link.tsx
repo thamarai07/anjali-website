@@ -284,7 +284,7 @@ const navListItems = [
   {
     label: "Contact Us",
     icon: PhoneIcon,
-    href : "/Contactus/"
+    href : "/contactus/"
   },
 ];
 
