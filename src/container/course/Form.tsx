@@ -71,7 +71,6 @@ const Form = ({ CourseContent } : any) => {
       ccode: "anjali04",
     },
   ];
-  console.log(responseMessage)
 
   return (
     <div className="border border-green-500 p-5 w-[100%] m-auto rounded shadow-md shadow-green-500">

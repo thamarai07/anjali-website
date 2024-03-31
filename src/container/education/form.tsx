@@ -30,6 +30,8 @@ const CourseForm = () => {
         .required("Mobile is required"),
       qualification: Yup.string().required("Qualification is required"),
       center_name: Yup.string().required("Location is required"),
+      course_name: Yup.string().required("Course is required"),
+
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
       setName(values.name)
@@ -72,10 +74,9 @@ const CourseForm = () => {
       ccode: "anjali04",
     },
   ];
-  console.log(responseMessage)
 
   return (
-    <div className="border bg-white border-green-500 p-5 w-[100%] m-auto rounded-lg shadow-md shadow-green-500">
+    <div className="border  bg-white border-green-500 p-5 w-[100%] m-auto rounded-lg shadow-md shadow-green-500">
        {showForm ? (
         <>
          <p className="lg:text-2xl text-xl mb-4 font-semibold">Enquiry Now </p>
@@ -83,15 +84,18 @@ const CourseForm = () => {
         <div className="w-[100%] mb-2">
           <label className="text-[16px] font-semibold">Course</label>
           <br />
-          <select name="course_name" id="" className="shadowBox w-[100%] border py-1.5 mt-1 rounded px-2"
-          >
-            <option value="">Please Select Course</option>
-            {
-                CourseContent.map((values)=>(
-                    <option className={values.courseId}>{values.courseTitle}</option>
-                ))
-            }
-          </select>
+          <select name="course_name"   onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.course_name} id="" className="shadowBox w-[100%] border py-1.5 mt-1 rounded px-2">
+  <option value="">Please Select Course</option>
+  <option value="others">Others</option>
+
+  {
+    CourseContent.map((values) => (
+      <option value={values.courseId}>{values.courseTitle}</option>
+    ))
+  }
+</select>
         </div>
         <div className="w-[100%]">
           <label className="text-[16px] font-semibold" htmlFor="name">
@@ -177,6 +181,8 @@ const CourseForm = () => {
             value={formik.values.center_name}
           >
             <option value="">Please Select </option>
+  <option value="others">Others</option>
+
             {centreArray.map((values) => (
               <option value={values.ccode}>{values.name}</option>
             ))}

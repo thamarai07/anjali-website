@@ -5,7 +5,11 @@ import { KeywordArray, CenterDetails } from "../../../utils/center";
 import CourseForm from "@/container/education/form";
 import Image from "next/image";
 import InfiniteLooper from "../../container/Infinity"
-
+import { VscDebugBreakpointLogUnverified } from "react-icons/vsc";
+import Certificate from "@/container/Certificate";
+import AnjaliStats from "@/container/AnjaliStats";
+import Testimonial from "@/container/Testimonial";
+import { useRouter } from "next/router";
 export const getStaticPaths = async (context) => {
   try {
     const paths = CenterDetails.flatMap((valu) =>
@@ -34,29 +38,12 @@ export const getStaticPaths = async (context) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params);
-  const data = {
-    token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwiaWF0IjoxNzEwNzQxOTM5fQ.SbqXNVrtgr6LPR3bRJUYOgcFG83NgYxcJjepsqmg-Lc",
-    source: "get_course_details",
-    slug: params.education,
-  };
+ 
 
   try {
-    const response = await axios.post(
-      "https://api-v1.cadd.ws/api/course_internship",
-      data,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    const coursedata = response.data;
-
+  
     return {
-      props: { coursedata: coursedata },
+      props: { coursedata: null },
     };
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -67,17 +54,38 @@ export const getStaticProps = async ({ params }) => {
 };
 
 function CenterName({ params }) {
-  const [Title, setTitle] = useState();
-  useEffect(() => {
-    CenterDetails.flatMap((valu) =>
-      KeywordArray.flatMap((val) =>
-        val.keyword.map((values) =>
-          setTitle(values.keyword1.replace(/###/g, valu.centerName))
-        )
-      )
-    );
-  }, []);
 
+  const [MapedValues,SetMapedValues] = useState()
+ 
+
+const rou = useRouter();
+const [Title, setTitle] = useState();
+const [centerNamedynamic,setcenterNamedynamic] = useState()
+
+
+useEffect(() => {
+  if (rou && rou.query) {
+    const { education } = rou.query;
+    CenterDetails.forEach(values => {
+      KeywordArray.forEach(value => {
+        value.keyword.forEach(val => {
+          const mappedValue = val.keyword1.replace(/###/g, values.centerName).replace(/\s+/g, "-");
+          if (mappedValue === education) {
+            setcenterNamedynamic(values.centerName)
+            SetMapedValues(mappedValue)
+            const modifiedStr = mappedValue.replace(/-/g, ' ');
+            setTitle(modifiedStr)
+          }
+        });
+      });
+    });
+  }
+}, [rou]);
+
+
+
+
+  
   const CompanyLogo = [
     {
       id: 1,
@@ -143,54 +151,77 @@ function CenterName({ params }) {
   ];
 
 
-  console.log(Title);
   return (
     <>
       <Head>
-        <title>{Title}</title>
+    
+        <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{Title}</title>
+    <meta name="description" content={`Discover excellence at Anjali Computer Education in ${centerNamedynamic}. Licensed by the Ministry of Corporate Affairs, Govt. of India, we offer premier training in computer software and soft skills. Whether you're a student, professional, or job seeker, our expert-led programs empower you to succeed. `}/>
+    <link rel="canonical" href={`https://anjalicomputereducation.com/education/${MapedValues}`} />
       </Head>
       <div className="gradient_one">
-      <div className="max-w-7xl m-auto ">
-      <div className=" px-16 py-2">
+      <div className="lg:max-w-7xl m-auto ">
+      <div className="lg:px-16 py-2">
         <div className="lg:flex gap-24 justify-center items-center">
-        <div className="w-[65%] m-auto">
-        <div className=" bg-white py-4 rounded-lg shadow-lg">
-            <h1 className=" font-extrabold capitalize text-[36px] flex justify-center items-center w-[60%] m-auto text-slate=400 antialiased">{Title}</h1>
+        <div className="lg:w-[65%] lg:px-0 px-4 m-auto">
+        <Image src={"/banneranjalicomputereducation.jpg"} className="rounded-md lg:mb-10 mb-6 m-auto" width={700} height={200} alt="anjalicomputereducation"/>
+        <div className=" bg-white lg:py-4 py-2 lg:rounded-lg rounded-md shadow-lg">
+            <h1 className=" font-extrabold capitalize lg:text-[32px] text-[22px] lg:p-0 p-2 flex justify-center items-center lg:w-[80%] w-auto m-auto text-slate-400 antialiased text-center ">{Title}</h1>
           </div>
-        <h2 className="text-black text-[26px] text-center mt-6 font-semibold antialiased">A unit of Anjali education & Charitable trust</h2>
-        <h3 className="text-center mt-4 text-[20px] font-semibold text-slate-500 w-[70%] m-auto antialiased">Licenced from ministry of corporate affairs - Govt. of India</h3>
+        <h2 className="text-black lg:text-[26px] text-[18px] text-center mt-6 font-semibold antialiased">A unit of Anjali education & Charitable trust</h2>
+        <h3 className="text-center mt-4 lg:text-[20px] text-[16px] font-semibold text-slate-500 lg:w-[70%] m-auto antialiased">Licenced from ministry of corporate affairs - Govt. of India</h3>
         </div>
          
-          <div className="w-[35%]"><CourseForm/></div>
+          <div className="lg:w-[35%] lg:py-10 py-6 lg:px-0 px-4"><CourseForm/></div>
         </div>
       </div>
      
       </div>
       </div>
       
-      <div className=" py-6 ">
+      <div className=" lg:py-6 py-2 ">
       <div className="lg:max-w-7xl m-auto  ">
-      <div className="py-10">
+      <div className="lg:py-10 py-4">
       <div className="lg:flex gap-10">
-      <div className="lg:w-[50%] p-8 border bg-white rounded-lg">
-        <p className="text-[18px] leading-8 antialiased">At Anjali Computer Education, we specialize in delivering top-notch training in both computer software and soft skills. Our programs cater to students, working professionals, and individuals seeking employment opportunities. With a team of highly skilled industry experts, we ensure that our students receive the best guidance to develop and enhance their skills. Whether it's mastering software applications or refining essential soft skills, we are committed to providing world-class education that empowers individuals to succeed in today's competitive landscape. Join us to unlock your full potential and thrive in the dynamic world of technology and professional development.</p>
+      <div className="lg:w-[50%] lg:p-8 p-4 border bg-white rounded-lg">
+        <p className="lg:text-[18px] text-[16px] leading-8 antialiased">At Anjali Computer Education <span className="capitalize">- {centerNamedynamic}</span>, we specialize in delivering top-notch training in both computer software and soft skills. Our programs cater to students, working professionals, and individuals seeking employment opportunities. With a team of highly skilled industry experts, we ensure that our students receive the best guidance to develop and enhance their skills. Whether it's mastering software applications or refining essential soft skills, we are committed to providing world-class education that empowers individuals to succeed in today's competitive landscape. Join us to unlock your full potential and thrive in the dynamic world of technology and professional development.</p>
 
       <div className="mt-10">
         <ol>
-        <li>World-Class Industry Experts:</li>
-        <li>Hands-On Practical Experience:</li>
-        <li>Online &amp; Offline Classes:</li>
-        <li>Flexible Timing:</li>
-        <li>Easy Installment Plans:</li>
-        <li>Part-Time Job Opportunities:</li>
-        <li>High-Tech Computer Labs:</li>
-        <li>Regular &amp; Weekend Classes:</li>
-        <li>Special Timing for Students &amp; Housewives:</li>
-        <li>ISO Certified Courses:</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md "><VscDebugBreakpointLogUnverified size={20}/> World-Class Industry Experts</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/> Hands-On Practical Experience</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/> Online &amp; Offline Classes</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>Flexible Timing</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>Easy Installment Plans</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>Part-Time Job Opportunities</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>High-Tech Computer Labs</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>Regular &amp; Weekend Classes</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/> Special Timing for Students &amp; Housewives</li>
+        <li className="flex justify-start items-center gap-2 text-lg mb-4 p-2 border shadow-md"><VscDebugBreakpointLogUnverified size={20}/>ISO Certified Courses</li>
         </ol>
       </div>
 
-        <p className="gradient_one text-center md:text-[30px] text-[20px] font-semibold lg:mt-[80px] mt-20 mb-[60px] antialiased  ">
+      
+          </div>
+      <div className="lg:w-[50%]">
+          <div className="grid lg:grid-cols-2 gap-10 lg:px-0 px-4">
+            
+                  <Image src={"/assets/img/1.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl"/>
+                  <div>
+                  <Image src={"/assets/img/30.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl"/>
+                  <Image src={"/assets/img/18.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl lg:mt-6 mt-8"/>
+                  </div>
+                  <Image src={"/assets/img/1.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl lg:w-auto w-full rounded-xl lg:-mt-16"/>
+                  <Image src={"/assets/img/24.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl m-auto "/>
+                  <Image src={"/assets/img/25.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl m-auto lg:-mt-[470px] "/>
+
+          </div>
+      </div>
+
+      </div>
+      <p className="gradient_one text-center md:text-[30px] text-[20px] font-semibold lg:mt-[80px] mt-20 mb-[60px] antialiased  py-4">
           Get chances to work at top companies
         </p>
 
@@ -210,26 +241,21 @@ function CenterName({ params }) {
               ))}
             </div>
           </InfiniteLooper>
-         
-          </div>
-      <div className="lg:w-[50%]">
-          <div className="grid lg:grid-cols-2 gap-10">
-            
-                  <Image src={"/assets/img/1.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl"/>
-                  <div>
-                  <Image src={"/assets/img/30.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl"/>
-                  <Image src={"/assets/img/18.jpg"} width={800} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl mt-6"/>
-                  </div>
-                  <Image src={"/assets/img/1.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl -mt-16"/>
-                  <Image src={"/assets/img/24.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl m-auto "/>
-                  <Image src={"/assets/img/25.jpg"} width={300} height={100} alt="anjalicomputer images" className="shadow-2xl rounded-xl -mt-[470px] "/>
+        <div>
+        <Certificate />
 
-          </div>
+        </div>
+        <p className="text-center md:text-[40px] text-[30px] font-extrabold md:mt-20 mt-10 mb-[80px]"></p>
+          <AnjaliStats />
+          <Testimonial />
+    
+
       </div>
+      
       </div>
+      
       </div>
-      </div>
-      </div>
+      <div className="bg-yellow-500 text-black  font-semibold  text-center py-5"><p className="false">© AnjaliComputerEducation - {centerNamedynamic} 2024, All rights reserved</p></div>
     </>
   );
 }
