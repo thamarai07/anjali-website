@@ -76,7 +76,6 @@ function CenterName({ params }) {
     );
   }, []);
 
-  console.log(Title);
   return (
     <>
       <Head>
