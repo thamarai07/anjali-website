@@ -7,24 +7,21 @@ export default function TopNav() {
   const Tele = [
     {
       id: 1,
-      tele: " 044-2226 6300 ",
-    },
-    {
-      id: 2,
       tele: "99628 44944",
     },
     {
-      id: 3,
-      tele: "99943 31114",
-    },
-    {
-      id: 4,
+      id: 2,
       tele: "99625 54550",
     },
     {
-      id: 5,
-      tele: " 99625 56559",
+      id: 3,
+      tele: "99625 56559",
     },
+    {
+      id: 4,
+      tele: "99943 31114",
+    },
+
   ];
   return (
     <>

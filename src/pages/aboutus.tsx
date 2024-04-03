@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import MainLayout from '@/components/Layuout/MainLayout';
-import Hero from '@/container/Aboutus/Hero';
-import OurMission from '@/container/Aboutus/OurMission';
+import Head from "next/head";
+import MainLayout from "@/components/Layuout/MainLayout";
+import Hero from "@/container/Aboutus/Hero";
+import OurMission from "@/container/Aboutus/OurMission";
 
 export default function Home() {
   return (
@@ -19,9 +19,9 @@ export default function Home() {
       </Head>
 
       <MainLayout>
-        <div className='lg:max-w-[1200px] m-auto px-10 mt-10'>
-            <Hero/>
-            <OurMission/>
+        <div className="lg:max-w-[1200px] m-auto px-10 mt-10">
+          <Hero />
+          <OurMission />
         </div>
       </MainLayout>
     </>

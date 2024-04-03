@@ -9,7 +9,8 @@ import Certificate from "@/container/Certificate";
 import Image from "next/image";
 import InfiniteLooper from "@/container/Infinity";
 // import db from "../config/db"
-import { MasonryGridGallery } from "@/components/gallery";
+// import { MasonryGridGallery } from "@/components/gallery";
+import Placement from "@/components/placement";
 
 export default function Home() {
   const CompanyLogo = [
@@ -96,13 +97,14 @@ export default function Home() {
           <h1 className="text-center md:text-[40px] text-[25px] leading-relaxed  font-bold lg:mb-[10px] lg:mt-[40px] antialiased  mb-4">
             Anjali Computer Education can help you have a successful career
           </h1>
-          <p className="text-center md:text-[35px] text-[25px] leading-relaxed  font-bold lg:mb-[100px] lg:mt-[40px] antialiased ">
+          <p className="text-center md:text-[35px] text-[25px] leading-relaxed  font-bold lg:mb-[10px] lg:mt-[40px] antialiased ">
             Our Advanced Courses Can Help You Advance{" "}
             <span className="text-red-500 "> Your Career </span>
           </p>
-          <MasonryGridGallery/>
+          <Placement/>
+          {/* <MasonryGridGallery /> */}
           <HomeSlider />
-        
+
         </div>
         <p className="gradient_one text-center md:text-[45px] text-[30px] font-semibold  lg:mt-[120px] mt-20 mb-[60px] antialiased  ">
           Get chances to work at top companies
