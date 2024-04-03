@@ -59,7 +59,7 @@ export const KeywordArray = [
             },
             {
                 id : 9,
-                keyword1 : "best computer academy near ### "
+                keyword1 : "best computer academy near ###"
             },
             {
                 id : 10,
@@ -151,7 +151,7 @@ export const KeywordArray = [
             },
             {
                 id : 30,
-                keyword1 : "review for computer institute - ###"
+                keyword1 : "review for computer institute ###"
             },
             {
                 id: 31,

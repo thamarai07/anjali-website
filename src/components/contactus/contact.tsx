@@ -15,8 +15,7 @@ export function AddsAccordion() {
     setId(data)
     setOnHovered(true)
   }
-console.log(Id)
-console.log(OnHovered)
+
   const AddArray = [
     {
       id: 5,

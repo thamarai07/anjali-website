@@ -90,7 +90,7 @@ function Footer() {
           </ul>
         </div>
     </div>
-    <div className="bg-yellow-500 text-white  font-semibold  text-center py-5"><p className="false">© AnjaliComputerEducation 2024, All rights reserved</p></div></div>
+    <div className="bg-yellow-500 text-black  font-semibold  text-center py-5"><p className="false">© AnjaliComputerEducation 2024, All rights reserved</p></div></div>
   )
 }
 
