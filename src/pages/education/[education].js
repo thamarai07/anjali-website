@@ -142,20 +142,33 @@ function CenterName({ params }) {
     },
   ];
 
+ 
+  function capitalizefirstLetter(str){
+    let st = str.split(" ");
+    let capitalizedWords = st.map((value) => {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    });
+    return capitalizedWords.join(" ");
+  }
+
+
+
   return (
     <>
       <Head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{Title}</title>
+        <title>{Title && capitalizefirstLetter(Title)}</title>
         <meta
           name="description"
           content={`Discover excellence at Anjali Computer Education in ${centerNamedynamic}. Licensed by the Ministry of Corporate Affairs, Govt. of India, we offer premier training in computer software and soft skills. Whether you're a student, professional, or job seeker, our expert-led programs empower you to succeed. `}
         />
+         <meta name="keywords" content={Title}/>
         <link
           rel="canonical"
-          href={`https://anjalicomputereducation.com/education/${MapedValues}`}
+          href={`https://anjalicomputereducation.com/education/${MapedValues}/`}
         />
+
       </Head>
       <div className="gradient_one">
         <div className="lg:max-w-7xl m-auto ">
@@ -164,7 +177,7 @@ function CenterName({ params }) {
               <div className="lg:w-[65%] lg:px-0 px-4 m-auto">
                 <Image
                   src={"/banneranjalicomputereducation.jpg"}
-                  className="rounded-md lg:mb-10 mb-6 m-auto"
+                  className="rounded-md lg:mb-10 mb-Sri Lakshmi Hayagrivas6 m-auto"
                   width={700}
                   height={200}
                   alt="anjalicomputereducation"

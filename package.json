@@ -15,7 +15,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.9",
-    "@next/font": "^14.1.4",
+    "@next/font": "^14.2.3",
     "@next/third-parties": "^14.1.4",
     "axios": "^1.6.7",
     "formik": "^2.4.5",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/fslightbox-react": "^1.7.7",
-    "@types/node": "^20.11.30",
+    "@types/node": "20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.12",
